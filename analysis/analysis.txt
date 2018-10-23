@@ -1,5 +1,5 @@
-Your Name here
-Your NetID here
+Ethan Shen
+es321
 Your Partner's name here (or erase)
 Your Partner's NetID here (or erase)
 
@@ -7,3 +7,38 @@ Questions here will come from the assignment
 writeup. Be sure to copy paste questions and 
 your explanations before you push to GitHub and
 do that before uploading to Gradescope
+
+Question 1: are the benchmark timings for StringStrand 
+consistent with the explanation below that the time to execute 
+cutAndSplice is O(b^2S)? 
+
+dna length = 4,639,221
+cutting at enzyme gaattc
+-----
+Class	                splicee	      recomb	time	appends
+-----
+StringStrand:	            256	      4,800,471	0.566	1290
+StringStrand:	            512	      4,965,591	0.556	1290
+StringStrand:	          1,024	      5,295,831	0.557	1290
+StringStrand:	          2,048	      5,956,311	0.664	1290
+StringStrand:	          4,096	      7,277,271	0.866	1290
+StringStrand:	          8,192	      9,919,191	1.241	1290
+StringStrand:	         16,384	     15,203,031	1.944	1290
+StringStrand:	         32,768	     25,770,711	3.527	1290
+StringStrand:	         65,536	     46,906,071	6.713	1290
+StringStrand:	        131,072	     89,176,791	13.019	1290
+StringStrand:	        262,144	    173,718,231	25.617	1290
+StringStrand:	        524,288	    342,801,111	48.613	1290
+StringStrand:	      1,048,576	    680,966,871	91.465	1290
+StringStrand:	      2,097,152	  1,357,298,391	171.221	1290
+
+Question 2: are the benchmark timings for StringBuilderStrand 
+consistent with the explanation below that the time to execute 
+cutAndSplice is O(bS)? 
+
+
+Question 3: Explain why the time for LinkStrand does not change 
+much at all over all the runs in the benchmark program. 
+Explain why you think memory is exhausted at the specific 
+strand size you see in your timings -- as compared to exhaustion for
+String and StringBuilder.
