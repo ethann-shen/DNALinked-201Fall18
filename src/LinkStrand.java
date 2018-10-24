@@ -21,6 +21,31 @@ public class LinkStrand implements IDnaStrand {
 	}
 	
 	@Override
+	public IDnaStrand getInstance(String source) {
+		return new LinkStrand(source);
+	}
+	
+	@Override 
+	public long size() {
+		return mySize.size;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		while (list != null) {
+			StringBuilder.append(next.info);
+		}
+		
+		return sb.toString();
+	}
+	
+	@Override 
+	public int getAppendCount() {
+		return myAppends;
+	}
+	
+	@Override
 	public IDnaStrand append(String dna) {
 		Node d = new Node(dna);
 		myLast.next = d; 
@@ -29,11 +54,8 @@ public class LinkStrand implements IDnaStrand {
 		return this; 
 	}
 	
-	@Override
-	public String toString() {
-		while (list != null) {
-			
-		}
-	}
+	
+	
+	
 
 }

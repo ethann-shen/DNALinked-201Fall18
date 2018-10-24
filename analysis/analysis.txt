@@ -36,6 +36,23 @@ Question 2: are the benchmark timings for StringBuilderStrand
 consistent with the explanation below that the time to execute 
 cutAndSplice is O(bS)? 
 
+dna length = 4,639,221
+cutting at enzyme gaattc
+-----
+Class	                splicee	      recomb	time	appends
+-----
+StringBuilderStrand:	            256	      4,800,471	0.030	1290
+StringBuilderStrand:	            512	      4,965,591	0.025	1290
+StringBuilderStrand:	          1,024	      5,295,831	0.011	1290
+StringBuilderStrand:	          2,048	      5,956,311	0.013	1290
+StringBuilderStrand:	          4,096	      7,277,271	0.009	1290
+StringBuilderStrand:	          8,192	      9,919,191	0.011	1290
+StringBuilderStrand:	         16,384	     15,203,031	0.018	1290
+StringBuilderStrand:	         32,768	     25,770,711	0.031	1290
+StringBuilderStrand:	         65,536	     46,906,071	0.035	1290
+StringBuilderStrand:	        131,072	     89,176,791	0.117	1290
+StringBuilderStrand:	        262,144	    173,718,231	0.222	1290
+StringBuilderStrand:	        524,288	    342,801,111	0.351	1290
 
 Question 3: Explain why the time for LinkStrand does not change 
 much at all over all the runs in the benchmark program. 
