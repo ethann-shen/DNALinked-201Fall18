@@ -8,6 +8,7 @@ public class LinkStrand implements IDnaStrand {
 			next = null;
 		}
 	}
+	private LinkStrand myInfo;
 	private Node myFirst, myLast;
 	private long mySize;
 	private int myAppends;
@@ -15,12 +16,43 @@ public class LinkStrand implements IDnaStrand {
 	private Node myCurrent;
 	private int myLocalIndex;
 	
-	public LinkStrand(){
+
+	public LinkStrand() {
 		this("");
-	}
+	} 
 	
 	public LinkStrand(String s) {
 		initialize(s);
+	}
+
+	@Override 
+	public void initialize(String source) {
+		myFirst = new Node(source);
+		myLast = null;
+		myAppends = 0;
+		mySize = source.length();
+	}
+
+	@Override
+	public long size() {
+		return mySize;
+	}
+
+
+	@Override
+	public IDnaStrand getInstance(String source) {
+		return new LinkStrand(source);
+		
+	}
+
+	@Override
+	public IDnaStrand append(String dna) {
+		Node d = new Node(dna);
+		myLast = myFirst;
+		myLast.next = d;
+		mySize += dna.length();
+		myAppends += 1;
+		return this; 		
 	}
 	
 	@Override
@@ -33,51 +65,31 @@ public class LinkStrand implements IDnaStrand {
 		}
 		return sb.toString();
 	}
-	
-	@Override
-	public IDnaStrand getInstance(String source) {
-		return new LinkStrand(source);
-	}
-	
-	@Override 
-	public long size() {
-		return mySize;
-	}
-	
-	
-	@Override 
-	public int getAppendCount() {
-		return myAppends;
-	}
-	
-	@Override
-	public IDnaStrand append(String dna) {
-		Node d = new Node(dna);
-		myLast.next = d; 
-		mySize += dna.length();
-		myAppends += 1;
-		return this; 
-	}
-	
+
 	@Override
 	public IDnaStrand reverse() {
-		Node current = myFirst;
-		StringBuilder copy = new StringBuilder(current.info);
-		while(current != null) {
-			current.next = current;
-			copy.append(current.info);
+		StringBuilder sb = new StringBuilder(myFirst.info);
+		Node last = new Node(sb.reverse().toString());
+		Node current = myFirst.next;
+		Node prev = last;
+		
+		while (current != null) {
+			last.next = prev;
+			prev = last;
+			current = current.next;
 		}
-		copy.reverse();
-		LinkStrand reversed = new LinkStrand(copy.toString());
 		
+		LinkStrand reversed = new LinkStrand();
+		while (last != null) {
+			reversed.append(last.info);
+			last = last.next;
+		}
 		return reversed;
-		
 	}
-	
+
 	@Override
-	public void initialize(String source) {
-		// TODO Auto-generated method stub
-		
+	public int getAppendCount() {
+		return myAppends;
 	}
 
 	@Override
@@ -102,9 +114,7 @@ public class LinkStrand implements IDnaStrand {
 		myIndex = index;
 		return myCurrent.info.charAt(myLocalIndex);
 	}
-	
-	
-	
-	
+
+
 
 }
