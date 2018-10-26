@@ -87,7 +87,7 @@ public class StringStrand implements IDnaStrand {
 
 	@Override 
 	public int getAppendCount() {
-		return myAppends;
+		return myAppends; 
 	}
 	
 	@Override 
