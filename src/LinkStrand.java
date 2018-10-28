@@ -50,11 +50,10 @@ public class LinkStrand implements IDnaStrand {
 		}
 		mySize += dna.length();
 		myAppends += 1;
-		
 		return this; 		
 	}
 	
-	@Override
+	@Override 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		Node list = myFirst;
