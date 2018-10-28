@@ -24,7 +24,7 @@ public class LinkStrand implements IDnaStrand {
 	@Override 
 	public void initialize(String source) {
 		myFirst = new Node(source);
-		myLast = null;
+		myLast = myFirst;
 		myAppends = 0;
 		mySize = source.length();
 	}
@@ -43,13 +43,11 @@ public class LinkStrand implements IDnaStrand {
  
 	@Override
 	public IDnaStrand append(String dna) {
-		
 		Node d = new Node(dna);
-		myLast = myFirst;
 		myLast.next = d;
-		
 		mySize += dna.length();
 		myAppends += 1;
+		myLast = myLast.next;
 		return this; 		
 	}
 	
