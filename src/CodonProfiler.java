@@ -15,8 +15,11 @@ public class CodonProfiler {
 	public int[] getCodonProfile(IDnaStrand strand, String[] codons) {
 		HashMap<String,Integer> map = new HashMap<>();
 		int[] ret = new int[codons.length];
+		ArrayList<String> codonlist = new ArrayList<>();
+		for (String s: codons) {
+			codonlist.add(s);
+		}
 				
-		for(int k=0; k < codons.length; k++) {
 			Iterator<Character> iter = strand.iterator();
 			while (iter.hasNext()) {
 				char a = iter.next();
@@ -25,14 +28,17 @@ public class CodonProfiler {
 				if (iter.hasNext()) {
 					b = iter.next();
 				}
-				if (iter.hasNext()) {
+				if (iter.hasNext()) { 
 					c = iter.next();
 				}
 				String cod = ""+a+b+c;
-				if (cod.equals(codons[k])) {
-					ret[k] += 1;
+				if (codonlist.contains(cod)) {
+					if (! map.containsKey(cod)) {
+						map.put(cod, 0);
+					}
+					map.put(cod, map.get(cod) + 1);
+					ret[codonlist.indexOf(cod)] = map.get(cod); 
 				}
-			}
 		}
 		return ret;
 	}

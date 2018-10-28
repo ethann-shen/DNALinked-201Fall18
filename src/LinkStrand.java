@@ -44,7 +44,7 @@ public class LinkStrand implements IDnaStrand {
 		return new LinkStrand(source);
 		
 	}
-
+ 
 	@Override
 	public IDnaStrand append(String dna) {
 		Node d = new Node(dna);
