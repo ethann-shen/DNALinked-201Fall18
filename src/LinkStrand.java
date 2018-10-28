@@ -72,11 +72,13 @@ public class LinkStrand implements IDnaStrand {
 		Node last = new Node(sb.reverse().toString());
 		Node current = myFirst.next;
 		Node prev = last;
+		Node next = null;
 		
 		while (current != null) {
-			last.next = prev;
-			prev = last;
-			current = current.next;
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
 		}
 		
 		LinkStrand reversed = new LinkStrand();
@@ -86,6 +88,7 @@ public class LinkStrand implements IDnaStrand {
 		}
 		return reversed;
 	}
+	  
 
 	@Override
 	public int getAppendCount() {
