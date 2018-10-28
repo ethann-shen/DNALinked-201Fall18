@@ -12,6 +12,10 @@ public class CodonProfiler {
 	 * @return int[] such that int[k] is number of occurrences of codons[k] in 
 	 * strand. 
 	 */
+	
+	/**
+	 * getCodonProfile is now O(N+C) because we are using a HashMap 
+	 */
 	public int[] getCodonProfile(IDnaStrand strand, String[] codons) {
 		HashMap<String,Integer> map = new HashMap<>();
 		int[] ret = new int[codons.length];
