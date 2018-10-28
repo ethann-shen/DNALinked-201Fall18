@@ -65,20 +65,20 @@ public class LinkStrand implements IDnaStrand {
 		}
 		return sb.toString();
 	}
-
+	
 	@Override
 	public IDnaStrand reverse() {
 		StringBuilder sb = new StringBuilder(myFirst.info);
 		Node last = new Node(sb.reverse().toString());
 		Node current = myFirst.next;
 		Node prev = last;
-		Node next = null;
 		
 		while (current != null) {
-			next = current.next;
-			current.next = prev;
-			prev = current;
-			current = next;
+			StringBuilder sbb = new StringBuilder(current.info);
+			last = new Node(sbb.reverse().toString());
+			last.next = prev;
+			prev = last;
+			current = current.next;
 		}
 		
 		LinkStrand reversed = new LinkStrand();
