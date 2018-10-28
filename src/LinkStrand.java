@@ -25,6 +25,9 @@ public class LinkStrand implements IDnaStrand {
 	public void initialize(String source) {
 		myFirst = new Node(source);
 		myLast = myFirst;
+		myCurrent = myFirst;
+		myIndex = 0;
+		myLocalIndex = 0;
 		myAppends = 0;
 		mySize = source.length();
 	}
@@ -111,6 +114,6 @@ public class LinkStrand implements IDnaStrand {
 				myCurrent = myCurrent.next;
 			}
 		}
-		return myCurrent.info.charAt(myLocalIndex);
+		return myCurrent.info.charAt(myLocalIndex); 
 	}
 }
