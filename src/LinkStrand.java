@@ -43,13 +43,14 @@ public class LinkStrand implements IDnaStrand {
  
 	@Override
 	public IDnaStrand append(String dna) {
-		if (myLast == null || myLast.next == null) 	{
+		if (myLast == null) {
 			Node d = new Node(dna);
 			myLast = myFirst;
 			myLast.next = d;
-			mySize += dna.length();
-			myAppends += 1;
 		}
+		mySize += dna.length();
+		myAppends += 1;
+		
 		return this; 		
 	}
 	
