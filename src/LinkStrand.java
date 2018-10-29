@@ -44,6 +44,11 @@ public class LinkStrand implements IDnaStrand {
 		
 	}
  
+	/**
+	 * @param A dna strand that is represented by a string 
+	 * @return Adds one new node to the end of the internal linked list and updates the state 
+	 * to maintain the invariant 
+	 */
 	@Override
 	public IDnaStrand append(String dna) {
 		Node d = new Node(dna);
@@ -54,6 +59,9 @@ public class LinkStrand implements IDnaStrand {
 		return this; 		
 	}
 	
+	/**
+	 * @return Returns the String representation of the DNA strand 
+	 */
 	@Override 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
@@ -65,6 +73,11 @@ public class LinkStrand implements IDnaStrand {
 		return sb.toString();
 	}
 	
+	
+	/**
+	 * @return Creates a new LinkStrand object that is the reverse of the object on which it's called
+	 * This returns a new strand and is not a mutator
+	 */
 	@Override
 	public IDnaStrand reverse() {
 		StringBuilder sb = new StringBuilder(myFirst.info);
@@ -94,6 +107,11 @@ public class LinkStrand implements IDnaStrand {
 		return myAppends;
 	}
 
+	/**
+	 * @param the index of the character, represented by an integer
+	 * @return Returns the character at the specified index if it is a valid index;
+	 * otherwise it throws an IndexOutOfBoundsException
+	 */
 	@Override
 	public char charAt(int index) {		
 		if (index >= mySize || index < 0) {
