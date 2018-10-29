@@ -73,9 +73,9 @@ String and StringBuilder.
 The number of splicee's doesn't matter, so it just looks at the number of appends. Since the number of appends is the same for each splicee, the timings are about the same. 
 In LinkStrand, LinkStrand.append is O(1), so the time should be constant. 
 
-There is a limit on how much memory can be stored before there is an error. The memory limit is reached earlier in StringStrand and StringBuilderStrand
-because the DNA strand grows too long. The memory limit for LinkStrand occurs later because the LinkStrand class uses pointers and references 
-to refer to the same splicee object, so the length of the DNA strand does not increase. 
+There is a limit on how much memory can be stored before there is an error, so the code stops running for all three classes once the DNA strand grows too long.
+The memory limit is reached earlier in StringStrand and StringBuilderStrand because the DNA strand grows too long faster because we are concatenating the strings.
+The memory limit for LinkStrand occurs later because the LinkStrand class uses pointers and references to refer to the splicee, so the DNA strand is allowed to grow longer. 
 
 dna length = 4,639,221
 cutting at enzyme gaattc
