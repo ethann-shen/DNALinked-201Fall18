@@ -1,7 +1,7 @@
 Ethan Shen
 es321
-Your Partner's name here (or erase)
-Your Partner's NetID here (or erase)
+Jenny Huang
+jlh165
 
 Questions here will come from the assignment
 writeup. Be sure to copy paste questions and 
@@ -11,6 +11,13 @@ do that before uploading to Gradescope
 Question 1: are the benchmark timings for StringStrand 
 consistent with the explanation below that the time to execute 
 cutAndSplice is O(b^2S)? 
+
+Note that the value of b is half the number of calls to append since each cut (except the first) is modeled by two calls of append in the method cutAndSplice -- see the code. 
+This means that b^2 will be constant in the benchmark, but S will vary. 
+
+Given that b^2 is constant, when looking at the timing below, we see that the time approximately doubles as the splicee count doubles. This is because
+there is a linear relationship between the length of the splicee and the time.  
+
 
 dna length = 4,639,221
 cutting at enzyme gaattc
@@ -36,6 +43,9 @@ Question 2: are the benchmark timings for StringBuilderStrand
 consistent with the explanation below that the time to execute 
 cutAndSplice is O(bS)? 
 
+Given that b is constant, when looking at the timing below, we see that the time approximately doubles as the splicee count doubles. This is because
+there is a linear relationship between the length of the splicee and the time. 
+
 dna length = 4,639,221
 cutting at enzyme gaattc
 -----
@@ -58,4 +68,40 @@ Question 3: Explain why the time for LinkStrand does not change
 much at all over all the runs in the benchmark program. 
 Explain why you think memory is exhausted at the specific 
 strand size you see in your timings -- as compared to exhaustion for
-String and StringBuilder.
+String and StringBuilder. 
+
+The number of splicee's doesn't matter, so it just looks at the number of appends. Since the number of appends is the same for each splicee, the timings are about the same. 
+In LinkStrand, LinkStrand.append is O(1), so the time should be constant. 
+
+There is a limit on how much memory can be stored before there is an error. The memory limit is reached earlier in StringStrand and StringBuilderStrand
+because the DNA strand grows too long. The memory limit for LinkStrand occurs later because the LinkStrand class uses pointers and references 
+to refer to the same splicee object, so the length of the DNA strand does not increase. 
+
+dna length = 4,639,221
+cutting at enzyme gaattc
+-----
+Class	                splicee	      recomb	time	appends
+-----
+LinkStrand:	            256	      4,800,471	0.028	1290
+LinkStrand:	            512	      4,965,591	0.021	1290
+LinkStrand:	          1,024	      5,295,831	0.008	1290
+LinkStrand:	          2,048	      5,956,311	0.004	1290
+LinkStrand:	          4,096	      7,277,271	0.004	1290
+LinkStrand:	          8,192	      9,919,191	0.007	1290
+LinkStrand:	         16,384	     15,203,031	0.004	1290
+LinkStrand:	         32,768	     25,770,711	0.004	1290
+LinkStrand:	         65,536	     46,906,071	0.004	1290
+LinkStrand:	        131,072	     89,176,791	0.006	1290
+LinkStrand:	        262,144	    173,718,231	0.004	1290
+LinkStrand:	        524,288	    342,801,111	0.004	1290
+LinkStrand:	      1,048,576	    680,966,871	0.005	1290
+LinkStrand:	      2,097,152	  1,357,298,391	0.003	1290
+LinkStrand:	      4,194,304	  2,709,961,431	0.008	1290
+LinkStrand:	      8,388,608	  5,415,287,511	0.004	1290
+LinkStrand:	     16,777,216	 10,825,939,671	0.003	1290
+LinkStrand:	     33,554,432	 21,647,243,991	0.005	1290
+LinkStrand:	     67,108,864	 43,289,852,631	0.006	1290
+LinkStrand:	    134,217,728	 86,575,069,911	0.006	1290
+LinkStrand:	    268,435,456	173,145,504,471	0.007	1290
+LinkStrand:	    536,870,912	346,286,373,591	0.011	1290
+LinkStrand:	  1,073,741,824	692,568,111,831	0.005	1290
